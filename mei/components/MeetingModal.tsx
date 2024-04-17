@@ -3,10 +3,6 @@ import Image from 'next/image'
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
@@ -14,7 +10,7 @@ import { Button } from './ui/button';
 
 interface MeetingModalProps {
     isOpen: boolean;
-    onCLose: () => void;
+    onClose: () => void;
     title: string;
     className?: string;
     children?: ReactNode;
@@ -26,10 +22,9 @@ interface MeetingModalProps {
 
 }
 
-const MeetingModal = ({ isOpen, onCLose, title, className, children, handleCLick, buttonText, image, buttonIcon, buttonClass }: MeetingModalProps) => {
+const MeetingModal = ({ isOpen, onClose, title, className, children, handleCLick, buttonText, image, buttonIcon, buttonClass }: MeetingModalProps) => {
     return (
-        <Dialog open={isOpen}>
-            <DialogTrigger>Open</DialogTrigger>
+        <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className='flex w-full max-w-[520px] flex-col gap-6 border-none bg-dark-1 px-6 py-9 text-white'>
                 <div className="flex flex-col gap-6">
                     {image && (
@@ -46,7 +41,7 @@ const MeetingModal = ({ isOpen, onCLose, title, className, children, handleCLick
                         {buttonText || 'Schedule Meeting'}
                     </Button>
                 </div>
-                
+
             </DialogContent>
         </Dialog>
 

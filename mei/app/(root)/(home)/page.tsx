@@ -1,17 +1,29 @@
+'use client'
+
 import MeetingTypeList from '@/components/MeetingTypeList';
+import { useGetCalls } from '@/hooks/useGetCalls';
+import { Call } from '@stream-io/video-react-sdk';
 import React from 'react'
 
 const Home = () => {
   const now = new Date();
 
-  const time = now.toLocaleTimeString('en-In', { hour: '2-digit', minute: '2-digit'});
-  const date = (new Intl.DateTimeFormat('en-In', { dateStyle: 'full'})).format(now);
+  const time = now.toLocaleTimeString('en-In', { hour: '2-digit', minute: '2-digit' });
+  const date = (new Intl.DateTimeFormat('en-In', { dateStyle: 'full' })).format(now);
+
+  const { upcomingCalls } = useGetCalls();
+
+  const calls = upcomingCalls;
 
   return (
     <section className='flex size-full flex-col gap-10 text-white'>
       <div className="w-full h-[300px] rounded-[20px] bg-[#ffffff0b] bg-hero bg-contain bg-right bg-no-repeat border-gray-500">
         <div className='flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11'>
-          <h2 className='glassmorphism max-w-[270px] rounded py-2 text-center text-base'>Upcoming Meeting at: 12:30 PM</h2>
+          <h2 className='glassmorphism max-w-[270px] rounded py-2 text-center text-base'>Upcoming Meeting at: <br />
+            {
+              calls && calls.length > 0 && calls[calls.length - 1].state?.startsAt?.toLocaleString()
+            }
+          </h2>
           <div className="flex flex-col gap-2">
             <h1 className='text-4xl font-extrabold lg:text-7xl'>
               {time}
