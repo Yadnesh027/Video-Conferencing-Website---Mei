@@ -57,13 +57,8 @@
 
 .str-video{
   --str-video__button-primary-base: #E96962;
-  --str-video__button-default-disabled: #E96962;
-  --str-video__button-default-base: #E96962;
 }
 
-.str-video__call-controls__button, .str-video__menu-toggle-button{
-  background-color: #E96962;
-}
 
 /* ==== clerk class override ===== */
 .cl-userButtonPopoverActionButtonIcon {
